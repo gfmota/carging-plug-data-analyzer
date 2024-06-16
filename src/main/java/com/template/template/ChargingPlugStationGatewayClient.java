@@ -1,13 +1,12 @@
 package com.template.template;
 
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.service.annotation.GetExchange;
+import reactor.core.publisher.Mono;
 
-@FeignClient(name = "charging-plug-station-gateway", url = "${charging-plug-station-gateway.url}")
 public interface ChargingPlugStationGatewayClient {
-    @GetMapping("/lastDayReport")
-    Object getChargingPlugStationDailyReport();
+    @GetExchange(url = "/lastDayReport", accept = "application/json")
+    Mono<Object> getChargingPlugStationDailyReport();
 
-    @GetMapping("/currentStatus")
-    Object getChargingPlugStationCurrentStatus();
+    @GetExchange(url = "/currentStatus", accept = "application/json")
+    Mono<Object> getChargingPlugStationCurrentStatus();
 }
