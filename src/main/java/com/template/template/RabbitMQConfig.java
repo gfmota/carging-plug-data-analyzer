@@ -26,7 +26,7 @@ public class RabbitMQConfig {
 
     @PostConstruct
     public void registerListeners() {
-        for (int i = 0; i < numberOfConsumers; i++) {
+        for (int i = 1; i <= numberOfConsumers; i++) {
             createMessageListenerContainer("charging-plug-station-daily-report-queue-" + i);
             createMessageListenerContainer("charging-plug-station-current-status-queue-" + i);
         }
